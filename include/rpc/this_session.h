@@ -3,6 +3,7 @@
 #ifndef THIS_SESSION_H_HTS95N7G
 #define THIS_SESSION_H_HTS95N7G
 
+#include <string>
 #include <atomic>
 #include "rpc/config.h"
 
@@ -24,6 +25,9 @@ public:
     //! \note Use this function if you need to close the connection from a
     //! handler.
     void post_exit();
+
+    std::string remoteAddr;
+    unsigned short remotePort;
 
     //! \brief Returns an ID that uniquely identifies a session. 
     //! \note This is not an ID for the client. If the client disconnects

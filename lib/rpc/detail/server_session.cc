@@ -62,6 +62,9 @@ void server_session::do_read() {
                     auto z = std::shared_ptr<RPCLIB_MSGPACK::zone>(
                         result.zone().release());
                     io_->post([this, self, msg, z]() {
+                        auto end = socket().remote_endpoint();
+                        this_session().remoteAddr = end.address().to_string();
+                        this_session().remotePort = end.port();
                         this_handler().clear();
                         this_session().clear();
                         this_session().set_id(reinterpret_cast<session_id_t>(this));
